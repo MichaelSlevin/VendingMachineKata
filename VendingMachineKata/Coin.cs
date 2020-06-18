@@ -12,17 +12,23 @@ namespace VendingMachineKata
                 Value = Constants.ValueOfNickel;
                 IsAccepted = true;
             }
-            if (weight == Constants.WeightOfDime && diameter == Constants.DiameterOfDime)
+            else if (weight == Constants.WeightOfDime && diameter == Constants.DiameterOfDime)
             {
                 Name = "Dime";
                 Value = Constants.ValueOfDime;
                 IsAccepted = true;
             }
-            if (weight == Constants.WeightOfQuarter && diameter == Constants.DiameterOfQuarter)
+            else if (weight == Constants.WeightOfQuarter && diameter == Constants.DiameterOfQuarter)
             {
                 Name = "Quarter";
                 Value = Constants.ValueOfQuarter;
                 IsAccepted = true;
+            }
+            else
+            {
+                Name = "Not accepted";
+                Value = 0;
+                IsAccepted = false;
             }
         }
 
