@@ -7,7 +7,15 @@ namespace VendingMachineKata
     { 
         public List<Coin> StoredCoins { get; private set; }
 
-        
+        public MoneyHandler()
+        {
+            StoredCoins = new List<Coin>();
+        }
+
+        public void InsertCoin(Coin coin)
+        {
+            StoredCoins.Add(coin);
+        }
 
     }
 }

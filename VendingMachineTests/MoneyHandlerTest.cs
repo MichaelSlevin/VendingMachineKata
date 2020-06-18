@@ -14,17 +14,12 @@ namespace VendingMachineTests
             var moneyHandler = new MoneyHandler();
             Assert.AreEqual(0, moneyHandler.StoredCoins.Count);
 
-            var mockCoin = new Mock<Coin>();
+            var coin = new Coin(0, 0);
 
-            moneyHandler.InsertCoin(mockCoin.Object);
+            moneyHandler.InsertCoin(coin);
 
-            Assert.AreEqual(0, moneyHandler.StoredCoins.Count);
-            Assert.IsTrue(moneyHandler.StoredCoins.Contains(mockCoin.Object));
-
-
-
-        }
-
-      
+            Assert.AreEqual(1, moneyHandler.StoredCoins.Count);
+            Assert.IsTrue(moneyHandler.StoredCoins.Contains(coin));
+        }   
     }
 }
