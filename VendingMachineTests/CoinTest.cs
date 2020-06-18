@@ -26,5 +26,26 @@ namespace VendingMachineTests
             Assert.AreEqual(Constants.ValueOfQuarter, quarter.Value);
             Assert.IsTrue(quarter.IsAccepted);
         }
+
+        //Given non-recognised values, the coin constructor creates a coin object with value= 0 and name = not recognised
+        [DataTestMethod]
+        [DataRow(0,0)]
+        [DataRow(5.1,23.4)]
+        [DataRow(2,3)]
+        [DataRow(100,72)]
+        [DataRow(5.0000001, 21.21)]
+        [DataRow(2.2679999999, 17.91)]
+        [DataRow(5.6701, 24.26)]
+        [DataRow(5,21.21)]
+        [DataRow(2.2638,17.914)]
+        [DataRow(5.6720,24.2611)]
+        public void Coin_Constructor_GivenUnrecognisedWeightAndSizeCorrectlyAssignsPropertiesOfCoin(double weight, double diameter)
+        {
+            var coin = new Coin(weight, diameter);
+
+            Assert.AreEqual("Not recognised", coin.Name);
+            Assert.AreEqual(0, coin.Value);
+            Assert.IsFalse(coin.IsAccepted);
+        }
     }
 }
