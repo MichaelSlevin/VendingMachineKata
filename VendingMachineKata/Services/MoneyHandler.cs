@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using VendingMachineKata.Model;
 
-namespace VendingMachineKata
+namespace VendingMachineKata.Services
 {
     public class MoneyHandler
     { 

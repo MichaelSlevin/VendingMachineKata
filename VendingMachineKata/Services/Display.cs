@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VendingMachineKata
+namespace VendingMachineKata.Services
 {
     public class Display
     { 

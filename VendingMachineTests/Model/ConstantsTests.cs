@@ -1,7 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendingMachineKata;
+using VendingMachineKata.Model;
 
-namespace VendingMachineTests
+namespace VendingMachineTests.Model
 {
     [TestClass]
     public class ConstantsTests

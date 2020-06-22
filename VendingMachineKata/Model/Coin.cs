@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VendingMachineKata
+namespace VendingMachineKata.Model
 {
     public class Coin
     {

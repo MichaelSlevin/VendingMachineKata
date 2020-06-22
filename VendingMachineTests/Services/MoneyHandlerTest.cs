@@ -1,8 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendingMachineKata;
 using Moq;
+using VendingMachineKata.Services;
+using VendingMachineKata.Model;
 
-namespace VendingMachineTests
+namespace VendingMachineTests.Services
 {
     [TestClass]
     public class MoneyHandlerTests
