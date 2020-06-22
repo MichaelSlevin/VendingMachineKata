@@ -28,6 +28,10 @@ namespace VendingMachineKata.Services
             return _display.CurrentMessage;
         }
 
+        public void InsertCoin(double weight, double diameter)
+        {
+        }
+
         public void PressButton(string productName)
         {
             var currentBalance = _moneyHandler.GetCurrentBalance();

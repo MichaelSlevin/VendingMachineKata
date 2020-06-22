@@ -84,9 +84,9 @@ namespace VendingMachineTests.IntegrationTests
 
             var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object, _mockIVendingMachineOperations.Object);
 
-            vendingMachine.InsertCoin(1, 2);
+            vendingMachine.InsertCoin(Constants.WeightOfDime, Constants.DiameterOfDime);
 
-            _mockMoneyHandler.Verify(x => x.InsertCoin(1, 2));
+            _mockMoneyHandler.Verify(x => x.InsertCoin(It.Is<Coin>(x=> x.Name = "Dime"));
         }
 
     }
