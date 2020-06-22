@@ -5,7 +5,7 @@ using VendingMachineKata.Services;
 using VendingMachineKata.VendingMachineInterface;
 using VendingMachineKata.Model;
 
-namespace VendingMachineTests.IntegrationTests
+namespace VendingMachineTests.Services
 {
     [TestClass]
     public class VendingMachineTests
@@ -75,7 +75,7 @@ namespace VendingMachineTests.IntegrationTests
         }
 
         [TestMethod]
-        public void VendingMaching_InsertCoin_CallsMoneyHandlerInsertCoinWithWeightAndDiamterProvided()
+        public void VendingMachine_InsertCoin_CallsMoneyHandlerInsertCoinWithWeightAndDiamterProvided()
         {
             var _mockMoneyHandler = new Mock<MoneyHandler>();
             var _mockProductHandler = new Mock<ProductHandler>();
@@ -84,11 +84,10 @@ namespace VendingMachineTests.IntegrationTests
 
             var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object, _mockIVendingMachineOperations.Object);
 
-            vendingMachine.InsertCoin(Constants.WeightOfDime, Constants.DiameterOfDime);
-
             _mockMoneyHandler.Setup(x => x.IdentifyCoin(Constants.WeightOfDime, Constants.DiameterOfDime))
                 .Returns(new Coin(Constants.WeightOfDime, Constants.DiameterOfDime));
 
+            vendingMachine.InsertCoin(Constants.WeightOfDime, Constants.DiameterOfDime);
             _mockMoneyHandler.Verify(x => x.InsertCoin(It.Is<Coin>(x=> x.Name == "Dime")));
         }
 

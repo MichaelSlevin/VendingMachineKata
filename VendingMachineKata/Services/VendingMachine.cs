@@ -30,6 +30,8 @@ namespace VendingMachineKata.Services
 
         public void InsertCoin(double weight, double diameter)
         {
+            var coin = _moneyHandler.IdentifyCoin(weight, diameter);
+            _moneyHandler.InsertCoin(coin);
         }
 
         public void PressButton(string productName)
