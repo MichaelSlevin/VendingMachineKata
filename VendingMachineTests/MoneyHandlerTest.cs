@@ -23,16 +23,18 @@ namespace VendingMachineTests
         }
 
         [TestMethod]
-        public void MoneyHandler_InsertCoin_DoesNotAddCoinIfInvalid()
+        public void MoneyHandler_InsertCoin_AddsCoinToReturnedCoinsWhenInvalid()
         {
             var moneyHandler = new MoneyHandler();
-            Assert.AreEqual(0, moneyHandler.StoredCoins.Count);
+            Assert.AreEqual(0, moneyHandler.ReturnedCoins.Count);
 
             var coin = new Coin(0, 0);
 
             moneyHandler.InsertCoin(coin);
 
-            Assert.AreEqual(0, moneyHandler.StoredCoins.Count);        }
+            Assert.AreEqual(0, moneyHandler.StoredCoins.Count);        
+            Assert.AreEqual(1, moneyHandler.ReturnedCoins.Count);        
+        }
 
         [TestMethod]
         public void MoneyHandler_InsertCoin_UpdatesCurrentAmountWhenValid()
@@ -42,6 +44,16 @@ namespace VendingMachineTests
             var dime = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
             moneyHandler.InsertCoin(dime);
             Assert.AreEqual(10, moneyHandler.CurrentAmount);
+        }
+
+        [TestMethod]
+        public void MoneyHandler_InsertCoin_CurrentAmountUnchangedWhenInvalid()
+        {
+            var moneyHandler = new MoneyHandler();
+            Assert.AreEqual(0, moneyHandler.CurrentAmount);
+            var fakeDime = new Coin(Constants.WeightOfDime+0.001, Constants.DiameterOfDime);
+            moneyHandler.InsertCoin(fakeDime);
+            Assert.AreEqual(0, moneyHandler.CurrentAmount);
         }
 
         [TestMethod]
@@ -87,5 +99,7 @@ namespace VendingMachineTests
             Assert.AreEqual("Not accepted", notAcceptedResult.Name);
 
         }
+
+
     }
 }
