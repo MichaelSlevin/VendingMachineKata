@@ -15,5 +15,10 @@ namespace VendingMachineKata.Services
             _productHandler = productHandler;
             _display = display;
         }
+
+        public string CheckDisplay()
+        {
+            return _display.CurrentMessage;
+        }
     }
 }

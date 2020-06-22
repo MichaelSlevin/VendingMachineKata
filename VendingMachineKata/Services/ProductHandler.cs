@@ -13,6 +13,11 @@ namespace VendingMachineKata.Services
             _vendingMachineOperations = vendingMachineOperations;
         }
 
+        public ProductHandler()
+        {
+
+        }
+
         public int GetProductPriceByName(string name)
         {
             if (name == "cola")

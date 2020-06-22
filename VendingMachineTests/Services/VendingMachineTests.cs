@@ -10,16 +10,19 @@ namespace VendingMachineTests.IntegrationTests
     public class VendingMachineTests
     {
         [TestMethod]
-        public void vendingMachine_CheckDisplay_ReturnsTheCurrentDisplay()
+        public void vendingMachine_CheckDisplay_ReturnsTheCurrentMessage()
         {
             var _mockMoneyHandler = new Mock<MoneyHandler>();
             var _mockProductHandler = new Mock<ProductHandler>();
-            var _mockDisplay= new Mock<Display>();
-           
-            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object,_mockProductHandler.Object, _mockDisplay.Object);
+            var _mockDisplay = new Mock<Display>();
 
-            vendingMachine.CheckDisplay();
-            _mockDisplay.Verify(x => x.CurrentMessage);
+            var expectedResult = "Mocked current message";
+            _mockDisplay.Object.CurrentMessage = expectedResult;
+
+            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object);
+
+            var returnedString = vendingMachine.CheckDisplay();
+            Assert.AreEqual(expectedResult, returnedString);
 
         }
 
