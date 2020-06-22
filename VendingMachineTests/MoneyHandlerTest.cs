@@ -35,11 +35,39 @@ namespace VendingMachineTests
         [TestMethod]
         public void MoneyHandler_IsCoinValid_ReturnsTrueIfValid()
         {
-            var coin = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
+            var dime = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
+            var nickel = new Coin(Constants.WeightOfNickel, Constants.DiameterOfNickel);
+            var quarter = new Coin(Constants.WeightOfQuarter, Constants.DiameterOfQuarter);
             var moneyHandler = new MoneyHandler();
 
-            var result = moneyHandler.IsCoinValid(coin);
-            Assert.IsTrue(result);
+            var dimeResult = moneyHandler.IsCoinValid(dime);
+            var nickelResult = moneyHandler.IsCoinValid(nickel);
+            var quarterResult = moneyHandler.IsCoinValid(quarter);
+            Assert.IsTrue(dimeResult);
+            Assert.IsTrue(nickelResult);
+            Assert.IsTrue(quarterResult);
+        }
+
+        //returns the correct coin
+        [TestMethod]
+        public void MoneyHandler_IdentifyCoin()
+        {
+            var dime = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
+            var nickel = new Coin(Constants.WeightOfNickel, Constants.DiameterOfNickel);
+            var quarter = new Coin(Constants.WeightOfQuarter, Constants.DiameterOfQuarter);
+            var notAccepted = new Coin(Constants.WeightOfQuarter+0.00001, Constants.DiameterOfQuarter);
+            var moneyHandler = new MoneyHandler();
+
+            var dimeResult = moneyHandler.IdentifyCoin(dime);
+            var nickelResult = moneyHandler.IdentifyCoin(nickel);
+            var quarterResult = moneyHandler.IdentifyCoin(quarter);
+            var notAcceptedResult = moneyHandler.IdentifyCoin(notAccepted);
+
+            Assert.AreEqual("Dime", dimeResult.Name);
+            Assert.AreEqual("Nickel", nickelResult.Name);
+            Assert.AreEqual("Quarter", quarterResult.Name);
+            Assert.AreEqual("Not accepted", notAcceptedResult.Name);
+
         }
     }
 }
