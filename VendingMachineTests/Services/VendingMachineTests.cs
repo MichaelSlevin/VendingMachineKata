@@ -74,5 +74,20 @@ namespace VendingMachineTests.IntegrationTests
             _mockMoneyHandler.Verify(x => x.CompleteSale(), Times.Never);
         }
 
+        [TestMethod]
+        public void VendingMaching_InsertCoin_CallsMoneyHandlerInsertCoinWithWeightAndDiamterProvided()
+        {
+            var _mockMoneyHandler = new Mock<MoneyHandler>();
+            var _mockProductHandler = new Mock<ProductHandler>();
+            var _mockDisplay = new Mock<Display>();
+            var _mockIVendingMachineOperations = new Mock<IVendingMachineOperations>();
+
+            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object, _mockIVendingMachineOperations.Object);
+
+            vendingMachine.InsertCoin(1, 2);
+
+            _mockMoneyHandler.Verify(x => x.InsertCoin(1, 2));
+        }
+
     }
 }

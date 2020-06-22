@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendingMachineKata;
 using Moq;
 using VendingMachineKata.Services;
+using VendingMachineKata.Model;
 using VendingMachineKata.VendingMachineInterface;
 
 namespace VendingMachineTests.IntegrationTests
@@ -18,8 +19,10 @@ namespace VendingMachineTests.IntegrationTests
         }
 
         //[DataTestMethod]
+        //[DataRow("candy")]
         //public void PushButton_WithEnoughFunds_WorksCorrectly(string productName)
         //{
+        //    _vendingMachine.InsertCoin(Constants.WeightOfQuarter, Constants.DiameterOfQuarter);
         //    _vendingMachine.PressButton(productName);
 
 
