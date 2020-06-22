@@ -48,7 +48,7 @@ namespace VendingMachineKata.Services
                 _display.InsufficientFunds(Constants.GetProductPrice(productName));
             }
             _vendingMachineOperations.UpdateDisplay(_display.CurrentMessage);
-            _display.DefaultMessage(currentBalance);
+            _display.DefaultMessage(_moneyHandler.GetCurrentBalance());
 
         }
     }
