@@ -3,6 +3,7 @@ using VendingMachineKata;
 using Moq;
 using VendingMachineKata.Services;
 using VendingMachineKata.VendingMachineInterface;
+using VendingMachineKata.Model;
 
 namespace VendingMachineTests.IntegrationTests
 {
@@ -26,23 +27,26 @@ namespace VendingMachineTests.IntegrationTests
 
         }
 
-        //[DataTestMethod]
-        //[DataRow("cola")]
-        //[DataRow("candy")]
-        //[DataRow("chips")]
-        //public void VendingMachine_PressButton_WithCorrectFunds_Calls_TryBuyAndThankYouMessage(string productName)
-        //{
-        //    var _mockMoneyHandler = new Mock<MoneyHandler>();
-        //    var _mockProductHandler = new Mock<ProductHandler>();
-        //    var _mockDisplay = new Mock<Display>();
+        [DataTestMethod]
+        [DataRow("cola")]
+        [DataRow("candy")]
+        [DataRow("chips")]
+        public void VendingMachine_PressButton_WithCorrectFunds_Calls_TryBuyAndThankYouMessageAndCompleteSale(string productName)
+        {
+            var _mockMoneyHandler = new Mock<MoneyHandler>();
+            var _mockProductHandler = new Mock<ProductHandler>();
+            var _mockDisplay = new Mock<Display>();
 
-        //    var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object);
+            var product = new Product(productName);
 
-        //    vendingMachine.PressButton(productName);
+            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object);
 
-        //    _mockMoneyHandler.Verify(x=> x.)
+            vendingMachine.PressButton(productName);
 
-        //}
+            _mockProductHandler.Verify(x => x.TryBuy(It.Is<Product>(x=> x.Name == product.Name && x.Price == product.Price), 0));
+            _mockDisplay.Verify(x => x.ThankYouMessage());
+            _mockMoneyHandler.Verify(x => x.CompleteSale());
+        }
 
     }
 }
