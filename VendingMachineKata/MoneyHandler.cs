@@ -6,6 +6,7 @@ namespace VendingMachineKata
     public class MoneyHandler
     { 
         public List<Coin> StoredCoins { get; private set; }
+        public int CurrentAmount { get; private set; }
 
         public MoneyHandler()
         {
@@ -20,6 +21,7 @@ namespace VendingMachineKata
         public void InsertCoin(Coin coin)
         {
             StoredCoins.Add(coin);
+            CurrentAmount += coin.Value;
         }
 
         public bool IsCoinValid(Coin coin)
