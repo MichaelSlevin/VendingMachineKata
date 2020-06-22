@@ -9,11 +9,14 @@ namespace VendingMachineTests.Services
     public class DisplayTests
     {
         [TestMethod]
-        public void Display_InsertCoinMessage()
+        public void Display_DefaultMessage_InsertCoinIf0Balance_ShowsBalanceIfBiggerThan0()
         {
             var display = new Display();
-            display.InsertCoinMessage();
+            display.DefaultMessage(0);
             Assert.AreEqual("INSERT COIN", display.CurrentMessage );
+
+            display.DefaultMessage(10);
+            Assert.AreEqual("$0.10", display.CurrentMessage);
         }
 
         [TestMethod]

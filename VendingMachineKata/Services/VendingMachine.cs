@@ -35,13 +35,15 @@ namespace VendingMachineKata.Services
             {
                 _productHandler.TryBuy(productName, currentBalance);
                 _moneyHandler.CompleteSale();
-                _display.ThankYouMessage();     
+                _display.ThankYouMessage();              
             }
             catch (InsufficientCreditException ex)
             {
                 _display.InsufficientFunds(Constants.GetProductPrice(productName));
             }
-            
+            _vendingMachineOperations.UpdateDisplay(_display.CurrentMessage);
+            _display.InsertCoinMessage();
+
         }
     }
 }

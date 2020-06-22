@@ -17,5 +17,19 @@ namespace VendingMachineTests.IntegrationTests
             _vendingMachine = new VendingMachine(new MoneyHandler(), new ProductHandler(_vendingMachineOperations.Object), new Display(), _vendingMachineOperations.Object);
         }
 
+        //[DataTestMethod]
+        //public void PushButton_WithEnoughFunds_WorksCorrectly(string productName)
+        //{
+        //    _vendingMachine.PressButton(productName);
+
+
+        //}
+
+        //[DataTestMethod]
+        //public void PushButton_WithInsufficientFunds_WorksCorrectly()
+        //{
+
+        //}
+
     }
 }
