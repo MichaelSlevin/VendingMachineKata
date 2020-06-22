@@ -22,9 +22,9 @@ namespace VendingMachineKata.Services
                 return 0;
         }
 
-        public void TryBuy(string productName, int currentCredit)
+        public void TryBuy(Product product, int currentCredit)
         {
-            if(currentCredit < GetProductPriceByName(productName))
+            if(currentCredit < product.Price)
             {
                 throw new InsufficientCreditException("Insufficient funds");
             }

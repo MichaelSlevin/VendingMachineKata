@@ -3,6 +3,7 @@ using VendingMachineKata;
 using Moq;
 using VendingMachineKata.Model;
 using VendingMachineKata.Services;
+using System.Collections.Generic;
 
 namespace VendingMachineTests.Services
 {
@@ -23,28 +24,38 @@ namespace VendingMachineTests.Services
             Assert.AreEqual(expectedPrice, price);
         }
 
-        [DataTestMethod]
-        [DataRow(100)]
-        [DataRow(50)]
-        [DataRow(65)]
-        public void ProductHandler_TryBuy_ThrowsIfInsufficientFunds(int priceOfProduct)
+        [TestMethod]
+        public void ProductHandler_TryBuy_ThrowsIfInsufficientFunds()
         {
-            var mockProduct = new Mock<Product>();
-            mockProduct.Setup(x => x.Price).Returns(priceOfProduct);
-            var insufficientCurrentCredit = priceOfProduct - 1;
-
             var productHandler = new ProductHandler();
-            var exceptionMessage = "";
-            try
-            {
-                productHandler.TryBuy(mockProduct.Object, insufficientCurrentCredit);
-            }
-            catch (InsufficientCreditException ex)
-            {
-                exceptionMessage = ex.Message;
-            }
 
-            Assert.AreEqual("Insufficient funds", exceptionMessage);
+            var cola = new Product("cola");
+            var candy = new Product("candy");
+            var chips = new Product("chips");
+
+            var products = new List<Product>();
+
+            products.Add(cola);
+            products.Add(candy);
+            products.Add(chips);
+
+            var exceptionMessage = "";
+
+            //try to buy each product with insufficient funds
+            foreach (var product in products)
+            {
+                try
+                {
+                    productHandler.TryBuy(product, product.Price - 1);
+                }
+                catch (InsufficientCreditException ex)
+                {
+                    exceptionMessage = ex.Message;
+                }
+
+                Assert.AreEqual("Insufficient funds", exceptionMessage);
+                exceptionMessage = "";
+            }            
         }
     }
 }
