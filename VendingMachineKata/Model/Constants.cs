@@ -13,9 +13,23 @@ namespace VendingMachineKata.Model
         public static double DiameterOfNickel => 21.21;
         public static double DiameterOfDime => 17.91;
         public static double DiameterOfQuarter => 24.26;
-        public static int PriceOfCola => 100;
-        public static int PriceOfCandy => 65;
-        public static int PriceOfChips => 50;
+        public static int GetProductPrice(string productName)
+        {
+            switch (productName)
+            {
+                case "cola":
+                    return 100;
+                case "candy":
+                    return 65;
+                case "chips":
+                    return 50;
+                default:
+                    return 0;                  
+            }
+        }
+
+
+
         
     }
 }

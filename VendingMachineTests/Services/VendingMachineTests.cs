@@ -43,7 +43,7 @@ namespace VendingMachineTests.IntegrationTests
 
             vendingMachine.PressButton(productName);
 
-            _mockProductHandler.Verify(x => x.TryBuy(It.Is<Product>(x=> x.Name == product.Name && x.Price == product.Price), 0));
+            _mockProductHandler.Verify(x => x.TryBuy(productName, It.IsAny<int>()));
             _mockDisplay.Verify(x => x.ThankYouMessage());
             _mockMoneyHandler.Verify(x => x.CompleteSale());
         }

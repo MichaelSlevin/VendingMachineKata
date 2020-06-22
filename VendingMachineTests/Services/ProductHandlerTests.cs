@@ -31,25 +31,20 @@ namespace VendingMachineTests.Services
             var mockIVendingMachineOperations = new Mock<IVendingMachineOperations>();
             var productHandler = new ProductHandler(mockIVendingMachineOperations.Object);
 
+            var productNames = new List<string>();
 
-            var cola = new Product("cola");
-            var candy = new Product("candy");
-            var chips = new Product("chips");
-
-            var products = new List<Product>();
-
-            products.Add(cola);
-            products.Add(candy);
-            products.Add(chips);
+            productNames.Add("cola");
+            productNames.Add("candy");
+            productNames.Add("chips");
 
             var exceptionMessage = "";
 
             //try to buy each product with insufficient funds
-            foreach (var product in products)
+            foreach (var product in productNames)
             {
                 try
                 {
-                    productHandler.TryBuy(product, product.Price - 1);
+                    productHandler.TryBuy(product, Constants.GetProductPrice(product) - 1);
                 }
                 catch (InsufficientCreditException ex)
                 {

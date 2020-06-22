@@ -20,25 +20,18 @@ namespace VendingMachineKata.Services
 
         public int GetProductPriceByName(string name)
         {
-            if (name == "cola")
-                return Constants.PriceOfCola;
-            if (name == "chips")
-                return Constants.PriceOfChips;
-            if (name == "candy")
-                return Constants.PriceOfCandy;
-            else
-                return 0;
+            return Constants.GetProductPrice(name);
         }
 
-        public void TryBuy(Product product, int currentCredit)
+        public void TryBuy(string productName, int currentCredit)
         {
-            if(currentCredit < product.Price)
+            if (currentCredit < Constants.GetProductPrice(productName))
             {
                 throw new InsufficientCreditException("Insufficient funds");
             }
             else
             {
-                _vendingMachineOperations.DispenseProduct(product);
+                _vendingMachineOperations.DispenseProduct(new Product(productName));
             }
         }
     }

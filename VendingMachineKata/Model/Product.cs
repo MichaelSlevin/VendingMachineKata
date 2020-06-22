@@ -12,19 +12,7 @@ namespace VendingMachineKata.Model
         public Product(string name)
         {
             this.Name = name;
-            switch (name) 
-            {
-                case "cola":
-                    this.Price = Constants.PriceOfCola;                   
-                    break;
-                case "candy":
-                    this.Price = Constants.PriceOfCandy;                   
-                    break;
-                case "chips":
-                    this.Price = Constants.PriceOfChips;                
-                    break;
-            }
-
+            this.Price = Constants.GetProductPrice(name);                
         }
 
         public string Name { get; private set; }
