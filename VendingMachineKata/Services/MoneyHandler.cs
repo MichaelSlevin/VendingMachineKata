@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using VendingMachineKata.Model;
 
 namespace VendingMachineKata.Services
@@ -7,12 +8,13 @@ namespace VendingMachineKata.Services
     public class MoneyHandler
     { 
         public List<Coin> StoredCoins { get; private set; }
+        public List<Coin> InsertedCoins { get; private set; }
         public List<Coin> ReturnedCoins { get; private set; }
-        public int CurrentAmount { get; private set; }
 
         public MoneyHandler()
         {
             StoredCoins = new List<Coin>();
+            InsertedCoins = new List<Coin>();
             ReturnedCoins = new List<Coin>();
         }
 
@@ -29,14 +31,24 @@ namespace VendingMachineKata.Services
             }
             else
             {
-                StoredCoins.Add(coin);
-                CurrentAmount += coin.Value;
+                InsertedCoins.Add(coin);
             }
+        }
+
+        public int GetCurrentBalance()
+        {
+            return InsertedCoins.Select(x => x.Value).Sum();
         }
 
         public bool IsCoinValid(Coin coin)
         {
             return coin.IsAccepted;
+        }
+
+        public void CompleteSale()
+        {
+            StoredCoins.AddRange(InsertedCoins);
+            InsertedCoins = new List<Coin>();
         }
     }
 }

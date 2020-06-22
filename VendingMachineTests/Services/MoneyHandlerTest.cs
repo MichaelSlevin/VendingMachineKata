@@ -9,12 +9,15 @@ namespace VendingMachineTests.Services
     [TestClass]
     public class MoneyHandlerTests
     {
+        Coin dime1;
+        Coin dime2;
+        Coin nickel1;
 
         public MoneyHandlerTests()
         {
-            var dime1 = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
-            var dime2 = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
-            var nickel1 = new Coin(Constants.WeightOfNickel, Constants.DiameterOfNickel);
+            dime1 = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
+            dime2 = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
+            nickel1 = new Coin(Constants.WeightOfNickel, Constants.DiameterOfNickel);
         }
         
         [TestMethod]
@@ -59,16 +62,6 @@ namespace VendingMachineTests.Services
             moneyHandler.InsertedCoins.Add(nickel1);
 
             Assert.AreEqual(25, moneyHandler.GetCurrentBalance()) ;
-        }
-
-        [TestMethod]
-        public void MoneyHandler_InsertCoin_CurrentAmountUnchangedWhenInvalid()
-        {
-            var moneyHandler = new MoneyHandler();
-            Assert.AreEqual(0, moneyHandler.CurrentAmount);
-            var fakeDime = new Coin(Constants.WeightOfDime+0.001, Constants.DiameterOfDime);
-            moneyHandler.InsertCoin(fakeDime);
-            Assert.AreEqual(0, moneyHandler.CurrentAmount);
         }
 
         [TestMethod]
@@ -123,12 +116,12 @@ namespace VendingMachineTests.Services
             moneyHandler.InsertedCoins.Add(dime1);
             moneyHandler.InsertedCoins.Add(nickel1);
 
-            Assert.AreEqual(0, moneyHandler.StoredCoins);
-            Assert.AreEqual(2, moneyHandler.InsertedCoins);
+            Assert.AreEqual(0, moneyHandler.StoredCoins.Count);
+            Assert.AreEqual(2, moneyHandler.InsertedCoins.Count);
             moneyHandler.CompleteSale();
 
-            Assert.AreEqual(2, moneyHandler.StoredCoins);
-            Assert.AreEqual(0, moneyHandler.InsertedCoins);
+            Assert.AreEqual(2, moneyHandler.StoredCoins.Count);
+            Assert.AreEqual(0, moneyHandler.InsertedCoins.Count);
 
             Assert.IsTrue(moneyHandler.StoredCoins.Contains(dime1));
             Assert.IsTrue(moneyHandler.StoredCoins.Contains(nickel1));
