@@ -13,11 +13,11 @@ namespace VendingMachineKata.Services
         public int GetProductPriceByName(string name)
         {
             if (name == "cola")
-                return 100;
+                return Constants.PriceOfCola;
             if (name == "chips")
-                return 50;
+                return Constants.PriceOfChips;
             if (name == "candy")
-                return 65;
+                return Constants.PriceOfCandy;
             else
                 return 0;
         }

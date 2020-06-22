@@ -16,7 +16,6 @@ namespace VendingMachineTests.Model
             var product = new Product(productName);
             Assert.AreEqual(price, product.Price);
             Assert.AreEqual(productName, product.Name);
-
         }
        
     }
