@@ -6,11 +6,13 @@ namespace VendingMachineKata
     public class MoneyHandler
     { 
         public List<Coin> StoredCoins { get; private set; }
+        public List<Coin> ReturnedCoins { get; private set; }
         public int CurrentAmount { get; private set; }
 
         public MoneyHandler()
         {
             StoredCoins = new List<Coin>();
+            ReturnedCoins = new List<Coin>();
         }
 
         public Coin IdentifyCoin(double weight, double diameter)
@@ -21,9 +23,14 @@ namespace VendingMachineKata
         public void InsertCoin(Coin coin)
         {
             if (!coin.IsAccepted)
-                return;
-            StoredCoins.Add(coin);
-            CurrentAmount += coin.Value;
+            {
+                ReturnedCoins.Add(coin);
+            }
+            else
+            {
+                StoredCoins.Add(coin);
+                CurrentAmount += coin.Value;
+            }
         }
 
         public bool IsCoinValid(Coin coin)
