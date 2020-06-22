@@ -31,5 +31,15 @@ namespace VendingMachineTests
             var result = moneyHandler.IsCoinValid(coin);
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void MoneyHandler_IsCoinValid_ReturnsTrueIfValid()
+        {
+            var coin = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
+            var moneyHandler = new MoneyHandler();
+
+            var result = moneyHandler.IsCoinValid(coin);
+            Assert.IsTrue(result);
+        }
     }
 }
