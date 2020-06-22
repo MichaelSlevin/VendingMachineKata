@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VendingMachineKata.Model;
 
 namespace VendingMachineKata.VendingMachineInterface
 {
@@ -8,6 +9,6 @@ namespace VendingMachineKata.VendingMachineInterface
     //operating the vending machine should implement
     public interface IVendingMachineOperations
     {
-
+        void DispenseProduct(Product product);
     }
 }

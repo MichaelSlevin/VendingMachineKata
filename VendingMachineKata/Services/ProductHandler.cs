@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using VendingMachineKata.Model;
+using VendingMachineKata.VendingMachineInterface;
 
 namespace VendingMachineKata.Services
 {
     public class ProductHandler
     {
-        public ProductHandler()
+        private readonly IVendingMachineOperations _vendingMachineOperations;
+        public ProductHandler(IVendingMachineOperations vendingMachineOperations)
         {
+            _vendingMachineOperations = vendingMachineOperations;
         }
 
         public int GetProductPriceByName(string name)
