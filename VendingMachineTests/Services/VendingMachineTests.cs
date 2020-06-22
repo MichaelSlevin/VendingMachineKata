@@ -86,7 +86,10 @@ namespace VendingMachineTests.IntegrationTests
 
             vendingMachine.InsertCoin(Constants.WeightOfDime, Constants.DiameterOfDime);
 
-            _mockMoneyHandler.Verify(x => x.InsertCoin(It.Is<Coin>(x=> x.Name = "Dime"));
+            _mockMoneyHandler.Setup(x => x.IdentifyCoin(Constants.WeightOfDime, Constants.DiameterOfDime))
+                .Returns(new Coin(Constants.WeightOfDime, Constants.DiameterOfDime));
+
+            _mockMoneyHandler.Verify(x => x.InsertCoin(It.Is<Coin>(x=> x.Name == "Dime")));
         }
 
     }

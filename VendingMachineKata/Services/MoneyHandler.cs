@@ -18,12 +18,12 @@ namespace VendingMachineKata.Services
             ReturnedCoins = new List<Coin>();
         }
 
-        public Coin IdentifyCoin(double weight, double diameter)
+        public virtual Coin IdentifyCoin(double weight, double diameter)
         {
             return new Coin(weight, diameter);
         }
 
-        public void InsertCoin(Coin coin)
+        public virtual void InsertCoin(Coin coin)
         {
             if (!coin.IsAccepted)
             {
