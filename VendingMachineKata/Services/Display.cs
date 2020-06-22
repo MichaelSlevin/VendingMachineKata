@@ -11,17 +11,17 @@ namespace VendingMachineKata.Services
         {
         }
 
-        public void InsertCoinMessage()
+        public virtual void InsertCoinMessage()
         {
             CurrentMessage = "INSERT COIN";
         }
 
-        public void ThankYouMessage()
+        public virtual void ThankYouMessage()
         {
             CurrentMessage = "THANK YOU";
         }
 
-        public void InsufficientFunds(int price)
+        public virtual void InsufficientFunds(int price)
         {
             var priceInDollars = String.Format("${0:0.00}", price/100d);
             CurrentMessage = $"PRICE {priceInDollars}";

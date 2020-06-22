@@ -23,7 +23,7 @@ namespace VendingMachineKata.Services
             return Constants.GetProductPrice(name);
         }
 
-        public void TryBuy(string productName, int currentCredit)
+        public virtual void TryBuy(string productName, int currentCredit)
         {
             if (currentCredit < Constants.GetProductPrice(productName))
             {

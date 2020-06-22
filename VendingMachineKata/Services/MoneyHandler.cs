@@ -45,7 +45,7 @@ namespace VendingMachineKata.Services
             return coin.IsAccepted;
         }
 
-        public void CompleteSale()
+        public virtual void CompleteSale()
         {
             StoredCoins.AddRange(InsertedCoins);
             InsertedCoins = new List<Coin>();
