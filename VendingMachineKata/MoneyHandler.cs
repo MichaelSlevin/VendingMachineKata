@@ -12,6 +12,11 @@ namespace VendingMachineKata
             StoredCoins = new List<Coin>();
         }
 
+        public Coin IdentifyCoin(double weight, double diameter)
+        {
+            return new Coin(weight, diameter);
+        }
+
         public void InsertCoin(Coin coin)
         {
             StoredCoins.Add(coin);

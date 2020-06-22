@@ -52,16 +52,12 @@ namespace VendingMachineTests
         [TestMethod]
         public void MoneyHandler_IdentifyCoin()
         {
-            var dime = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
-            var nickel = new Coin(Constants.WeightOfNickel, Constants.DiameterOfNickel);
-            var quarter = new Coin(Constants.WeightOfQuarter, Constants.DiameterOfQuarter);
-            var notAccepted = new Coin(Constants.WeightOfQuarter+0.00001, Constants.DiameterOfQuarter);
             var moneyHandler = new MoneyHandler();
 
-            var dimeResult = moneyHandler.IdentifyCoin(dime);
-            var nickelResult = moneyHandler.IdentifyCoin(nickel);
-            var quarterResult = moneyHandler.IdentifyCoin(quarter);
-            var notAcceptedResult = moneyHandler.IdentifyCoin(notAccepted);
+            var dimeResult = moneyHandler.IdentifyCoin(Constants.WeightOfDime, Constants.DiameterOfDime);
+            var nickelResult = moneyHandler.IdentifyCoin(Constants.WeightOfNickel, Constants.DiameterOfNickel);
+            var quarterResult = moneyHandler.IdentifyCoin(Constants.WeightOfQuarter, Constants.DiameterOfQuarter);
+            var notAcceptedResult = moneyHandler.IdentifyCoin(Constants.WeightOfQuarter + 0.00001, Constants.DiameterOfQuarter);
 
             Assert.AreEqual("Dime", dimeResult.Name);
             Assert.AreEqual("Nickel", nickelResult.Name);
