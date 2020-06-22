@@ -8,12 +8,13 @@ namespace VendingMachineTests.Services
 {
     [TestClass]
     public class ProductHandlerTests
-    {       
+    {
+
         [DataTestMethod]
         [DataRow(100, "cola")]
         [DataRow(50, "chips")]
         [DataRow(65, "candy")]
-        public void ProductHandler_GetProductPriceByName_RetursCorrectPrice(int expectedPrice, string productName)
+        public void ProductHandler_GetProductPriceByName_ReturnsCorrectPrice(int expectedPrice, string productName)
         {
             var productHandler = new ProductHandler();
 
@@ -23,16 +24,20 @@ namespace VendingMachineTests.Services
         }
 
         [DataTestMethod]
-        [DataRow("cola", 99)]
-        [DataRow("chips", 49)]
-        [DataRow("candy", 64)]
-        public void ProductHandler_TryBuy_ThrowsIfInsufficientFunds(string productName, int currentCredit)
+        [DataRow(100)]
+        [DataRow(50)]
+        [DataRow(65)]
+        public void ProductHandler_TryBuy_ThrowsIfInsufficientFunds(int priceOfProduct)
         {
+            var mockProduct = new Mock<Product>();
+            mockProduct.Setup(x => x.Price).Returns(priceOfProduct);
+            var insufficientCurrentCredit = priceOfProduct - 1;
+
             var productHandler = new ProductHandler();
             var exceptionMessage = "";
             try
             {
-                productHandler.TryBuy(productName, currentCredit);
+                productHandler.TryBuy(mockProduct.Object, insufficientCurrentCredit);
             }
             catch (InsufficientCreditException ex)
             {
