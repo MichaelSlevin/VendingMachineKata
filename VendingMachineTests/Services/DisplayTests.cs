@@ -12,14 +12,16 @@ namespace VendingMachineTests.Services
         public void Display_InsertCoinMessage()
         {
             var display = new Display();
-            Assert.AreEqual("INSERT COIN", display.InsertCoinMessage());
+            display.InsertCoinMessage();
+            Assert.AreEqual("INSERT COIN", display.CurrentMessage );
         }
 
         [TestMethod]
         public void Display_ThankYouMessage()
         {
             var display = new Display();
-            Assert.AreEqual("THANK YOU", display.ThankYouMessage());
+            display.ThankYouMessage();
+            Assert.AreEqual("THANK YOU", display.CurrentMessage);
         }
 
         [DataTestMethod]
@@ -29,11 +31,9 @@ namespace VendingMachineTests.Services
         public void Display_InsufficientFunds(int priceOfItem, string expectedResult)
         {
             var display = new Display();
-            Assert.AreEqual(expectedResult, display.InsufficientFunds(priceOfItem));
+            display.InsufficientFunds(priceOfItem);
+            Assert.AreEqual(expectedResult, display.CurrentMessage);
         }
-
-
-
 
     }
 }
