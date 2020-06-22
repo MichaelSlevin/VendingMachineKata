@@ -14,7 +14,7 @@ namespace VendingMachineTests
             var moneyHandler = new MoneyHandler();
             Assert.AreEqual(0, moneyHandler.StoredCoins.Count);
 
-            var coin = new Coin(0, 0);
+            var coin = new Coin(Constants.WeightOfDime, Constants.DiameterOfDime);
 
             moneyHandler.InsertCoin(coin);
 

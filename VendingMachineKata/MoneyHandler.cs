@@ -20,6 +20,8 @@ namespace VendingMachineKata
 
         public void InsertCoin(Coin coin)
         {
+            if (!coin.IsAccepted)
+                return;
             StoredCoins.Add(coin);
             CurrentAmount += coin.Value;
         }
