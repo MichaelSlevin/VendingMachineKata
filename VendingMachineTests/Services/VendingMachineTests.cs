@@ -16,11 +16,13 @@ namespace VendingMachineTests.IntegrationTests
             var _mockMoneyHandler = new Mock<MoneyHandler>();
             var _mockProductHandler = new Mock<ProductHandler>();
             var _mockDisplay = new Mock<Display>();
+            var _mockIVendingMachineOperations = new Mock<IVendingMachineOperations>();
+
 
             var expectedResult = "Mocked current message";
             _mockDisplay.Object.CurrentMessage = expectedResult;
 
-            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object);
+            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object, _mockIVendingMachineOperations.Object);
 
             var returnedString = vendingMachine.CheckDisplay();
             Assert.AreEqual(expectedResult, returnedString);
@@ -36,8 +38,9 @@ namespace VendingMachineTests.IntegrationTests
             var _mockMoneyHandler = new Mock<MoneyHandler>();
             var _mockProductHandler = new Mock<ProductHandler>();
             var _mockDisplay = new Mock<Display>();
+            var _mockIVendingMachineOperations = new Mock<IVendingMachineOperations>();
 
-            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object);
+            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object, _mockIVendingMachineOperations.Object);
 
             vendingMachine.PressButton(productName);
 
@@ -55,10 +58,11 @@ namespace VendingMachineTests.IntegrationTests
             var _mockMoneyHandler = new Mock<MoneyHandler>();
             var _mockProductHandler = new Mock<ProductHandler>();
             var _mockDisplay = new Mock<Display>();
+            var _mockIVendingMachineOperations = new Mock<IVendingMachineOperations>();
 
             _mockProductHandler.Setup(x => x.TryBuy(productName, 0)).Throws<InsufficientCreditException>();
 
-            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object);
+            var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object, _mockIVendingMachineOperations.Object);
 
             vendingMachine.PressButton(productName);
 

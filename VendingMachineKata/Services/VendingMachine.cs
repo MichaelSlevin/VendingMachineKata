@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using VendingMachineKata.Model;
+using VendingMachineKata.VendingMachineInterface;
 
 namespace VendingMachineKata.Services
 {
@@ -9,12 +10,17 @@ namespace VendingMachineKata.Services
         private readonly MoneyHandler _moneyHandler;
         private readonly ProductHandler _productHandler;
         private readonly Display _display;
+        private readonly IVendingMachineOperations _vendingMachineOperations;
 
-        public VendingMachine(MoneyHandler moneyHandler, ProductHandler productHandler, Display display)
+        public VendingMachine(MoneyHandler moneyHandler, 
+            ProductHandler productHandler, 
+            Display display, 
+            IVendingMachineOperations vendingMachineOperations)
         {
             _moneyHandler = moneyHandler;
             _productHandler = productHandler;
             _display = display;
+            _vendingMachineOperations = vendingMachineOperations;
         }
 
         public string CheckDisplay()
@@ -29,7 +35,7 @@ namespace VendingMachineKata.Services
             {
                 _productHandler.TryBuy(productName, currentBalance);
                 _moneyHandler.CompleteSale();
-                _display.ThankYouMessage();             
+                _display.ThankYouMessage();     
             }
             catch (InsufficientCreditException ex)
             {

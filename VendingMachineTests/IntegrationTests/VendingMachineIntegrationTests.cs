@@ -14,7 +14,7 @@ namespace VendingMachineTests.IntegrationTests
         public VendingMachineIntegrationTests()
         {
             _vendingMachineOperations = new Mock<IVendingMachineOperations>();
-            _vendingMachine = new VendingMachine(new MoneyHandler(), new ProductHandler(_vendingMachineOperations.Object), new Display());
+            _vendingMachine = new VendingMachine(new MoneyHandler(), new ProductHandler(_vendingMachineOperations.Object), new Display(), _vendingMachineOperations.Object);
         }
 
     }
