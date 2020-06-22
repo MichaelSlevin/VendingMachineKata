@@ -31,6 +31,10 @@ namespace VendingMachineKata.Services
             {
                 throw new InsufficientCreditException("Insufficient funds");
             }
+            else
+            {
+                _vendingMachineOperations.DispenseProduct(product);
+            }
         }
     }
 }
