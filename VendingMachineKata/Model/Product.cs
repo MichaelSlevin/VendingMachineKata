@@ -1,4 +1,5 @@
 ﻿using System;
+using VendingMachineKata.Model;
 
 namespace VendingMachineKata.Model
 {
@@ -14,13 +15,13 @@ namespace VendingMachineKata.Model
             switch (name) 
             {
                 case "cola":
-                    this.Cost = 100;                   
+                    this.Cost = Constants.PriceOfCola;                   
                     break;
                 case "candy":
-                    this.Cost = 65;                   
+                    this.Cost = Constants.PriceOfCandy;                   
                     break;
                 case "chips":
-                    this.Cost = 50;                   
+                    this.Cost = Constants.PriceOfChips;                
                     break;
             }
 
