@@ -11,10 +11,10 @@ namespace VendingMachineTests.Model
         [DataRow("cola", 100)]
         [DataRow("candy", 65)]
         [DataRow("chips", 50)]
-        public void Product_Constructor_CreatesProductWithCorrectCostAndName(string productName, int cost)
+        public void Product_Constructor_CreatesProductWithCorrectPriceAndName(string productName, int price)
         {
             var product = new Product(productName);
-            Assert.AreEqual(cost, product.Cost);
+            Assert.AreEqual(price, product.Price);
             Assert.AreEqual(productName, product.Name);
 
         }

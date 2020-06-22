@@ -15,13 +15,13 @@ namespace VendingMachineKata.Model
             switch (name) 
             {
                 case "cola":
-                    this.Cost = Constants.PriceOfCola;                   
+                    this.Price = Constants.PriceOfCola;                   
                     break;
                 case "candy":
-                    this.Cost = Constants.PriceOfCandy;                   
+                    this.Price = Constants.PriceOfCandy;                   
                     break;
                 case "chips":
-                    this.Cost = Constants.PriceOfChips;                
+                    this.Price = Constants.PriceOfChips;                
                     break;
             }
 
@@ -29,7 +29,7 @@ namespace VendingMachineKata.Model
 
         public string Name { get; private set; }
 
-        public int Cost { get; private set; }
+        public int Price { get; private set; }
 
     }
 }
