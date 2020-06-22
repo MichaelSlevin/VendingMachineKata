@@ -20,5 +20,12 @@ namespace VendingMachineKata.Services
         {
             return _display.CurrentMessage;
         }
+
+        //public void PressButton(string productName)
+        //{
+        //    var currentBalance = _moneyHandler.GetCurrentBalance();
+        //    _productHandler.TryBuy
+        //    _productHandler.TryBuy()
+        //}
     }
 }

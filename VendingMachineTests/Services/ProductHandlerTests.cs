@@ -77,12 +77,11 @@ namespace VendingMachineTests.Services
             var mockIVendingMachineOperations = new Mock<IVendingMachineOperations>();
             var productHandler = new ProductHandler(mockIVendingMachineOperations.Object);
 
-            var product = new Product(nameOfProduct);
             var exceptionMessage = "";
 
             try
             {
-                productHandler.TryBuy(product, product.Price + creditSurplus);
+                productHandler.TryBuy(nameOfProduct, Constants.GetProductPrice(nameOfProduct) + creditSurplus);
             }
             catch (InsufficientCreditException ex)
             {
@@ -91,8 +90,8 @@ namespace VendingMachineTests.Services
 
             //Check that an exception has not been thrown
             Assert.AreEqual("", exceptionMessage);
-            //Check that the vending machine has been instructed to dispense the cola
-            mockIVendingMachineOperations.Verify(x => x.DispenseProduct(product));
+            //Check that the vending machine has been instructed to dispense the correct product
+            mockIVendingMachineOperations.Verify(x => x.DispenseProduct(It.Is<Product>(x=> x.Name == nameOfProduct)));
         }
     }
 }

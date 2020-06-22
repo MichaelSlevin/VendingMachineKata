@@ -23,5 +23,15 @@ namespace VendingMachineTests.Model
             Assert.AreEqual(17.91, Constants.DiameterOfDime);
             Assert.AreEqual(24.26, Constants.DiameterOfQuarter);
         }
+
+        [DataTestMethod]
+        [DataRow("cola", 100)]
+        [DataRow("candy", 65)]
+        [DataRow("chips", 50)]
+        public void Constants_GetProductPrice_CorrectValuesReturned(string nameOfProduct, int expectedPrice)
+        {
+            Assert.AreEqual(expectedPrice, Constants.GetProductPrice(nameOfProduct));
+
+        }
     }
 }
