@@ -7,20 +7,14 @@ using VendingMachineKata.VendingMachineInterface;
 namespace VendingMachineTests.IntegrationTests
 {
     [TestClass]
-    public class VendingMachineTests
+    public class VendingMachineIntegrationTests
     {
         private readonly VendingMachine _vendingMachine;
         private readonly Mock<IVendingMachineOperations> _vendingMachineOperations;
-        public VendingMachineTests()
+        public VendingMachineIntegrationTests()
         {
             _vendingMachineOperations = new Mock<IVendingMachineOperations>();
-            _vendingMachine = new VendingMachine(new MoneyHandler(), new ProductHandler(_vendingMachineOperations.Object));
-        }
-
-        [TestMethod]
-        public void VendingMachine_PressTheColaButtonWithCorrectFunds()
-        {
-            
+            _vendingMachine = new VendingMachine(new MoneyHandler(), new ProductHandler(_vendingMachineOperations.Object), new Display());
         }
 
     }
