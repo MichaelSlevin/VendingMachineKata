@@ -20,6 +20,16 @@ namespace VendingMachineTests
 
             Assert.AreEqual(1, moneyHandler.StoredCoins.Count);
             Assert.IsTrue(moneyHandler.StoredCoins.Contains(coin));
-        }   
+        }  
+        
+        [TestMethod]
+        public void MoneyHandler_IsCoinValid_ReturnsFalseIfNot()
+        {
+            var coin = new Coin(0,0);
+            var moneyHandler = new MoneyHandler();
+
+            var result = moneyHandler.IsCoinValid(coin);
+            Assert.IsFalse(result);
+        }
     }
 }
