@@ -33,12 +33,14 @@ namespace VendingMachineTests.IntegrationTests
         [DataRow("cola")]
         [DataRow("candy")]
         [DataRow("chips")]
-        public void VendingMachine_PressButton_WithCorrectFunds_Calls_TryBuyAndThankYouMessageAndCompleteSale(string productName)
+        public void VendingMachine_PressButton_WithCorrectFunds_Calls_TryBuy_ThankYouMessage_CompleteSale_AndUpdateDisplay(string productName)
         {
             var _mockMoneyHandler = new Mock<MoneyHandler>();
             var _mockProductHandler = new Mock<ProductHandler>();
             var _mockDisplay = new Mock<Display>();
             var _mockIVendingMachineOperations = new Mock<IVendingMachineOperations>();
+
+            _mockDisplay.Object.CurrentMessage = "mocked message";
 
             var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object, _mockIVendingMachineOperations.Object);
 
@@ -47,6 +49,7 @@ namespace VendingMachineTests.IntegrationTests
             _mockProductHandler.Verify(x => x.TryBuy(productName, 0));
             _mockDisplay.Verify(x => x.ThankYouMessage());
             _mockMoneyHandler.Verify(x => x.CompleteSale());
+            _mockIVendingMachineOperations.Verify(x => x.UpdateDisplay("mocked message"));
         }
 
         [DataTestMethod]

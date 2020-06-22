@@ -10,5 +10,6 @@ namespace VendingMachineKata.VendingMachineInterface
     public interface IVendingMachineOperations
     {
         void DispenseProduct(Product product);
+        void UpdateDisplay(string message);
     }
 }
