@@ -26,5 +26,23 @@ namespace VendingMachineTests.IntegrationTests
 
         }
 
+        //[DataTestMethod]
+        //[DataRow("cola")]
+        //[DataRow("candy")]
+        //[DataRow("chips")]
+        //public void VendingMachine_PressButton_WithCorrectFunds_Calls_TryBuyAndThankYouMessage(string productName)
+        //{
+        //    var _mockMoneyHandler = new Mock<MoneyHandler>();
+        //    var _mockProductHandler = new Mock<ProductHandler>();
+        //    var _mockDisplay = new Mock<Display>();
+
+        //    var vendingMachine = new VendingMachine(_mockMoneyHandler.Object, _mockProductHandler.Object, _mockDisplay.Object);
+
+        //    vendingMachine.PressButton(productName);
+
+        //    _mockMoneyHandler.Verify(x=> x.)
+
+        //}
+
     }
 }
