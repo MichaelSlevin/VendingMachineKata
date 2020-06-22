@@ -20,6 +20,14 @@ namespace VendingMachineKata
             else
                 return 0;
         }
+
+        public void TryBuy(string productName, int currentCredit)
+        {
+            if(currentCredit < GetProductPriceByName(productName))
+            {
+                throw new InsufficientCreditException("Insufficient funds");
+            }
+        }
     }
 }
 

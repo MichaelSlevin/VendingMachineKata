@@ -37,7 +37,7 @@ namespace VendingMachineTests
                 exceptionMessage = ex.Message;
             }
 
-            Assert.AreEqual("Insufficient funds", excpetionMessage);
+            Assert.AreEqual("Insufficient funds", exceptionMessage);
         }
     }
 }
