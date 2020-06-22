@@ -19,5 +19,25 @@ namespace VendingMachineTests
 
             Assert.AreEqual(expectedPrice, price);
         }
+
+        [DataTestMethod]
+        [DataRow("cola", 99)]
+        [DataRow("chips", 49)]
+        [DataRow("candy", 64)]
+        public void ProductHandler_TryBuy_ThrowsIfInsufficientFunds(string productName, int currentCredit)
+        {
+            var productHandler = new ProductHandler();
+            var exceptionMessage = "";
+            try
+            {
+                productHandler.TryBuy(productName, currentCredit);
+            }
+            catch (InsufficientCreditException ex)
+            {
+                exceptionMessage = ex.Message;
+            }
+
+            Assert.AreEqual("Insufficient funds", excpetionMessage);
+        }
     }
 }
