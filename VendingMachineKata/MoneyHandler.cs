@@ -17,5 +17,9 @@ namespace VendingMachineKata
             StoredCoins.Add(coin);
         }
 
+        public bool IsCoinValid(Coin coin)
+        {
+            return coin.IsAccepted;
+        }
     }
 }
