@@ -4,25 +4,27 @@ using System.Collections.Generic;
 namespace VendingMachineKata.Services
 {
     public class Display
-    { 
+    {
+        public string CurrentMessage;
+
         public Display()
         {
         }
 
-        public string InsertCoinMessage()
+        public void InsertCoinMessage()
         {
-            return "INSERT COIN";
+            CurrentMessage = "INSERT COIN";
         }
 
-        public string ThankYouMessage()
+        public void ThankYouMessage()
         {
-            return "THANK YOU";
+            CurrentMessage = "THANK YOU";
         }
 
-        public string InsufficientFunds(int price)
+        public void InsufficientFunds(int price)
         {
             var priceInDollars = String.Format("${0:0.00}", price/100d);
-            return $"PRICE {priceInDollars}";
+            CurrentMessage = $"PRICE {priceInDollars}";
         }
     }
 }
