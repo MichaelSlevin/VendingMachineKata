@@ -11,9 +11,16 @@ namespace VendingMachineKata.Services
         {
         }
 
-        public virtual void InsertCoinMessage()
+        public virtual void DefaultMessage(int currentBalance)
         {
-            CurrentMessage = "INSERT COIN";
+            if (currentBalance == 0)
+            {
+                CurrentMessage = "INSERT COIN";
+            }
+            else
+            {
+                CurrentMessage = GetPriceInDollars(currentBalance);
+            }
         }
 
         public virtual void ThankYouMessage()
@@ -23,8 +30,13 @@ namespace VendingMachineKata.Services
 
         public virtual void InsufficientFunds(int price)
         {
-            var priceInDollars = String.Format("${0:0.00}", price/100d);
-            CurrentMessage = $"PRICE {priceInDollars}";
+            
+            CurrentMessage = $"PRICE {GetPriceInDollars(price)}";
+        }
+
+        private string GetPriceInDollars(int cent)
+        {
+            return String.Format("${0:0.00}", cent / 100d);
         }
     }
 }

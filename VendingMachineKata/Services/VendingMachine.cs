@@ -42,7 +42,7 @@ namespace VendingMachineKata.Services
                 _display.InsufficientFunds(Constants.GetProductPrice(productName));
             }
             _vendingMachineOperations.UpdateDisplay(_display.CurrentMessage);
-            _display.InsertCoinMessage();
+            _display.DefaultMessage(currentBalance);
 
         }
     }
